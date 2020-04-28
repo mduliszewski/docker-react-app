@@ -1,0 +1,11 @@
+language: generic
+# below line is because to use docker u need super-user permissions
+sudo: required 
+services:
+    - docker
+
+before_install:
+    - docker build -t mduliszewski/docker-react -f Dockerfile.dev .
+ 
+script:
+    - docker run -e CI=true mduliszewski/docker-react npm run test
